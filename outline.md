@@ -17,3 +17,10 @@ Event :
 
      Add Riview note et comment pour les events
 
+        {
+         -url: path
+         -view : logic
+         -models : db
+         -templates : frontend
+        }
+
