@@ -1,14 +1,17 @@
 Event :
         -Titre
-        -Date_debut event
-        -Date_fin event
+        -Image
+        -Localisation 
+        -Durée
         -Nbr_jours event
         -Groupe size
         -Tour Type
-        -Location
         -Overview
         -Programme
         -Activity & place (information concernant les hotaile et les place a joindre)
+        *Cathégorie {
+         -
+        }
 
      Booking forms:
         -Froms => Date
