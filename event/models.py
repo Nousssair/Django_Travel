@@ -11,10 +11,12 @@ Type_event = {
     
 }
 
-
+def image_upload(instance,filename):
+    imagename , extension = filename.split(".")
+    return "events/%s.%s"%(instance.id,extension)
 
 class Event(models.Model): # Nom de la table
-    Images= models.ImageField(upload_to='Voy')
+    Images= models.ImageField(upload_to=image_upload)
     Titre = models.CharField(max_length=100)        # Partie Colonnes
     Pays = models.CharField(max_length=100)
     Nbr_jours = models.CharField(max_length=100)

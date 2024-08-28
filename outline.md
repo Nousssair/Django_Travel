@@ -27,3 +27,8 @@ Event :
          -templates : frontend
         }
 
+
+
+
+Static Files :[frontend files : images , css , javascript]
+Media  Files :[upolads files : images, pdf , files, videos ]

@@ -1,0 +1,221 @@
+{%load static%}
+
+<header class="header sticky-bar">
+    <div class="top-bar"> 
+      <div class="container-fluid"> 
+        <div class="text-header"> 
+          <div class="text-unlock text-sm-bold">Unlock the Magic of Travel with Travila - Your Gateway to Extraordinary Experiences</div>
+          <a class="link-secondary-2" href="#">Get This Now 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 16 16" fill="none">
+              <path d="M7.99992 12.6666L12.6666 7.99992L7.99992 3.33325M12.6666 7.99992L3.33325 7.99992" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid background-body">
+      <div class="main-header">
+        <div class="header-left">
+          <div class="header-logo">
+            <a class='d-flex' href='/'>
+              <img class="light-mode" alt="Travila" src="{% static 'imgs/template/logo.svg' %}">
+              <img class="dark-mode" alt="Travila" src="{% static 'imgs/template/logo-w.svg' %}">
+            </a>
+          </div>
+          <div class="header-nav">
+            <nav class="nav-main-menu">
+              <ul class="main-menu">
+                <!-- Home Page -->
+                <li><a class='active' href='/'>Home</a></li>
+  
+                <!-- Tours -->
+                <li class="mega-li-small has-children">
+                  <a href='/tour-list-2'>Tours List - 2</a>
+                  <div class="mega-menu">
+                    <div class="mega-menu-inner mega-menu-inner-small">
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <h6 class="text-lg-bold neutral-1000">Tour Details</h6>
+                          <ul class="sub-menu">
+                            <li><a href='/tour-detail-4'>Tour Single 04</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+  
+                <!-- Blog -->
+                <li class="has-children">
+                  <a href='/blog-grid'>Blog</a>
+                  <ul class="sub-menu">
+                    <li><a href='/blog-grid'>Blog List</a></li>
+                    <li><a href='/blog-detail'>Blog Details</a></li>
+                  </ul>
+                </li>
+  
+                <!-- Contact -->
+                <li><a href='/contact'>Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="d-none d-xxl-inline-block box-dropdown-cart align-middle mr-15">
+            <span class="text-14-medium icon-list icon-account icon-lang"><span class="text-14-medium arrow-down">EN</span></span>
+            <div class="dropdown-account">
+              <ul>
+                <li><a class="text-sm-medium" href="#">English</a></li>
+                <li><a class="text-sm-medium" href="#">French</a></li>
+                <li><a class="text-sm-medium" href="#">Chinese</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="d-none d-xxl-inline-block box-dropdown-cart align-middle mr-15">
+            <span class="text-14-medium icon-list icon-cart"><span class="text-14-medium arrow-down">USD</span></span>
+            <div class="dropdown-cart">
+              <ul>
+                <li><a class="text-sm-medium" href="#">USD</a></li>
+                <li><a class="text-sm-medium" href="#">EUR</a></li>
+                <li><a class="text-sm-medium" href="#">SGP</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="d-none d-xxl-inline-block align-middle mr-15">
+            <a class="btn btn-mode change-mode mr-15" href="#" data-bs-theme-value="dark">
+              <img class="light-mode" src="{% static 'imgs/template/icons/light.svg' %}" alt="Travila">
+              <img class="dark-mode" src="{% static 'imgs/template/icons/light-w.svg' %}" alt="Travila">
+            </a>
+            <a class="btn btn-default btn-signin" href="#">Signin</a>
+          </div>
+          <div class="burger-icon-2 burger-icon-white">
+            <img src="{% static 'imgs/template/icons/menu.svg' %}" alt="Travila">
+          </div>
+          <div class="burger-icon burger-icon-white">
+            <span class="burger-icon-top"></span>
+            <span class="burger-icon-mid"></span>
+            <span class="burger-icon-bottom"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar button-bg-2">
+    <div class="mobile-header-wrapper-inner">
+        <div class="mobile-header-logo"> 
+            <a class='d-flex' href='/'><img class="light-mode" alt="Travila" src="{% static 'imgs/template/logo.svg' %}"><img class="dark-mode" alt="Travila" src="{% static 'imgs/template/logo-w.svg' %}"></a>
+            <div class="burger-icon burger-icon-white"></div>
+        </div>
+        <div class="mobile-header-top">
+            <div class="box-author-profile"> 
+                <div class="card-author"> 
+                    <div class="card-image"> <img src="{% static 'imgs/page/homepage1/author2.png' %}" alt="Travila"></div>
+                    <div class="card-info"> 
+                        <p class="text-md-bold neutral-1000">Alice Roses</p>
+                        <p class="text-xs neutral-1000">London, England</p>
+                    </div>
+                </div>
+                <a class="btn btn-black" href="#">Logout</a>
+            </div>
+        </div>
+        <div class="mobile-header-content-area">
+            <div class="perfect-scroll">
+                <div class="mobile-menu-wrap mobile-header-border">
+                    <nav>
+                        <ul class="mobile-menu font-heading">
+                            <li class="has-children"><a class='active' href='/'>Home Pages</a>
+                                <ul class="sub-menu">
+                                    <li><a href='/index-5'>Home 5 - Tours</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-children"><a href='/tour-grid'>Tours</a>
+                                <ul class="sub-menu">
+                                    <li><a href='/tour-list-2'>Tours List 2</a></li>
+                                    <li><a href='/tour-detail-4'>Tour Single 04 - Image</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-children"> 
+                                <a href='/blog-grid'>Blog</a>
+                                <ul class="sub-menu">
+                                    <li><a href='/blog-grid-3'>List</a></li>
+                                    <li><a href='/blog-detail'>Blog Details</a></li>
+                                </ul>
+                            </li>
+                            <li><a href='/contact'>Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sidebar-canvas-wrapper perfect-scrollbar button-bg-2">
+    <div class="sidebar-canvas-container"> 
+        <div class="sidebar-canvas-head">
+            <div class="sidebar-canvas-logo"> 
+                <a class='d-flex' href='/'><img class="light-mode" alt="Travila" src="{% static 'imgs/template/logo.svg' %}"><img class="dark-mode" alt="Travila" src="{% static 'imgs/template/logo-w.svg' %}"></a>
+            </div>
+            <div class="sidebar-canvas-lang"> 
+                <div class="d-inline-block box-dropdown-cart align-middle mr-15"><span class="text-14-medium icon-list icon-account icon-lang"><span class="text-14-medium arrow-down">EN</span></span>
+                    <div class="dropdown-account">
+                        <ul>
+                            <li><a class="text-sm-medium" href="#">English</a></li>
+                            <li><a class="text-sm-medium" href="#">French</a></li>
+                            <li><a class="text-sm-medium" href="#">Chinese</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-inline-block box-dropdown-cart align-middle mr-15"><span class="text-14-medium icon-list icon-cart"><span class="text-14-medium arrow-down">USD</span></span>
+                    <div class="dropdown-cart">
+                        <ul>
+                            <li><a class="text-sm-medium" href="#">USD</a></li>
+                            <li><a class="text-sm-medium" href="#">EUR</a></li>
+                            <li><a class="text-sm-medium" href="#">SGP</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a class="close-canvas" href="#"> <img alt="Travila" src="{% static 'imgs/template/icons/close.png' %}"></a>
+            </div>
+        </div>
+        <div class="sidebar-canvas-content">
+            <div class="box-author-profile"> 
+                <div class="card-author"> 
+                    <div class="card-image"> <img src="{% static 'imgs/page/homepage1/author2.png' %}" alt="Travila"></div>
+                    <div class="card-info"> 
+                        <p class="text-md-bold neutral-1000">Alice Roses</p>
+                        <p class="text-xs neutral-1000">London, England</p>
+                    </div>
+                </div>
+                <a class="btn btn-black" href="#">Logout</a>
+            </div>
+            <div class="box-quicklinks"> 
+                <h6 class="title-quicklinks neutral-1000">Quick Links</h6>
+                <div class="box-list-quicklinks"> 
+                    <!-- Add quick link items as needed -->
+                </div>
+            </div>
+            <div class="box-eventsdate"> 
+                <h6 class="title-eventsdate neutral-1000">Event Dates</h6>
+                <div class="box-calendar-events"> 
+                    <div id="calendar-events"></div>
+                </div>
+            </div>
+            <div class="box-savedplaces"> 
+                <h6 class="title-savedplaces neutral-1000">Saved Places</h6>
+                <div class="box-list-places"> 
+                    <!-- Add saved place items as needed -->
+                </div>
+            </div>
+            <div class="box-contactus">
+                <h6 class="title-contactus neutral-1000">Contact Us</h6>
+                <div class="contact-info"> 
+                    <p class="address-2 text-md-medium neutral-1000">4517 Washington Ave. <br>Manchester, Kentucky 39495</p>
+                    <p class="hour-work-2 text-md-medium neutral-1000">Hours: 8:00 - 17:00, Mon - Sat</p>
+                    <p class="email-2 text-md-medium neutral-1000">support@travila.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

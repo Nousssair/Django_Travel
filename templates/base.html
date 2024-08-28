@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="msapplication-TileColor" content="#0E0E0E">
+        <meta name="template-color" content="#0E0E0E">
+        <meta name="description" content="Index page">
+        <meta name="keywords" content="index, page">
+        <meta name="author" content="">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/template/favicon.svg' %}">
+        <!-- Fichiers CSS dans le dossier vendors -->
+        <link rel="stylesheet" href="{% static 'css/vendors/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/vendors/normalize.css' %}">
+        <link rel="stylesheet" href="{% static 'css/vendors/uicons-regular-rounded.css' %}">
+        <!-- Fichiers CSS dans le dossier plugins -->
+        <link rel="stylesheet" href="{% static 'css/plugins/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'css/plugins/bootstrap-datepicker.css' %}">
+        <link rel="stylesheet" href="{% static 'css/plugins/bootstrap-datepicker3.css' %}">
+        <link rel="stylesheet" href="{% static 'css/plugins/carouselTicker.css' %}">
+        <link rel="stylesheet" href="{% static 'css/plugins/magnific-popup.css' %}">
+        <link rel="stylesheet" href="{% static 'css/plugins/perfect-scrollbar.css' %}">
+        <link rel="stylesheet" href="{% static 'css/plugins/select2.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/plugins/slick.css' %}">
+        <link rel="stylesheet" href="{% static 'css/plugins/swiper-bundle.min.css' %}">
+        <!-- Fichier CSS principal -->
+        <link rel="stylesheet" href="{% static 'css/stylee209.css' %}">
+        <title>Tour list 2 - Multipurpose Travel Booking HTML Template</title>
+    </head>
+
+    <body>
+
+        <!-- Inclure le navbar -->
+        {% include 'partials/navbar.html' %}
+
+        {% block body %}
+
+        <!-- contenu spécéphique a chaque page-->
+
+        {% endblock body %}
+
+
+        {% include 'partials/footer.html' %}
+        <!-- Fichier JavaScript principal -->
+        <script src="{% static 'js/maine209.js' %}"></script>
+
+        <!-- Fichiers JavaScript dans le dossier plugins -->
+        <script src="{% static 'js/plugins/bootstrap-datepicker.js' %}"></script>
+        <script src="{% static 'js/plugins/counterup.js' %}"></script>
+        <script src="{% static 'js/plugins/dark.js' %}"></script>
+        <script src="{% static 'js/plugins/jquery.carouselTicker.js' %}"></script>
+        <script src="{% static 'js/plugins/magnific-popup.js' %}"></script>
+        <script src="{% static 'js/plugins/masonry.min.js' %}"></script>
+        <script src="{% static 'js/plugins/noUISlider.js' %}"></script>
+        <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>  
+        <script src="{% static 'js/plugins/scrollup.js' %}"></script>
+        <script src="{% static 'js/plugins/slick.js' %}"></script>
+        <script src="{% static 'js/plugins/slider.js' %}"></script> 
+        <script src="{% static 'js/plugins/swiper-bundle.min.js' %}"></script>
+        <script src="{% static 'js/plugins/waypoints.js' %}"></script>
+        <script src="{% static 'js/plugins/wow.js' %}"></script>
+        <!-- Fichiers JavaScript dans le dossier vendor -->
+        <script src="{% static 'js/vendor/jquery-3.7.1.min.js' %}"></script>
+        <script src="{% static 'js/vendor/jquery-migrate-3.3.0.min.js' %}"></script>
+        <script src="{% static 'js/vendor/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'js/vendor/jquery.countdown.min.js' %}"></script>
+    </body>
+</html>
