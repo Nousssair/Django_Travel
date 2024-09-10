@@ -1483,7 +1483,7 @@ h6, .heading-6 {
   background-image: url(../imgs/page/homepage2/email.svg);
 }
 [data-bs-theme=dark] .footer-type-3 .form-newsletter .btn-brand-secondary:hover {
-  color: #FEFA17 !important;
+  color: #EC7847 !important;
 }
 [data-bs-theme=dark] .box-love-us-inner {
   background-image: url(../imgs/page/homepage3/map.png);
@@ -6705,7 +6705,7 @@ label {
   fill: var(--bs-neutral-1000);
 }
 .footer.footer-white a.icon-socials:hover svg {
-  fill: var(--bs-brand-secondary);
+  fill: #EC7847;
 }
 .footer.footer-type-6 {
   padding-top: 82px;
@@ -6836,7 +6836,7 @@ a.icon-socials:hover {
   transition-duration: 0.2s;
 }
 a.icon-socials:hover svg {
-  fill: #FEFA17;
+  fill: #EC7847;
 }
 
 .title-follow {
@@ -6855,8 +6855,14 @@ a.icon-socials:hover svg {
   fill: var(--bs-neutral-1000);
 }
 .block-socials-footer a.icon-socials:hover svg {
-  fill: var(--bs-warning);
+  fill: #EC7847;
 }
+
+/* Style pour le hover de l'icône WhatsApp */
+.custom-hover:hover svg {
+  fill: #EC7847; /* Change la couleur de l'icône au survol */
+}
+
 
 .footer-type-3 {
   border-top: 1px solid var(--bs-border-color);
@@ -15066,6 +15072,8 @@ h2 span {
   .block-banner-property-detail .banner-property-detail-1 .box-button-abs {
     flex-wrap: wrap;
   }
+
+
 }
 @media (max-width: 374.98px) {
   .card-news .card-info {
@@ -15145,4 +15153,4 @@ h2 span {
   .sticky-bar.stick .main-header {
     padding: 10px 0;
   }
-}/*# sourceMappingURL=style.css.map */
+}
