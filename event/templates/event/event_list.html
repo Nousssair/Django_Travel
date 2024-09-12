@@ -3,61 +3,26 @@
 
 
 {% block body %}
+<!-- Inclure jQuery et jQuery UI -->
 
+<style>
+/* Style pour les dates spéciales */
+
+  .ui-datepicker .highlight a {
+      background-color: orange !important;
+      color: white !important;
+  }
+
+</style>
 <main class="main">
-      <section class="box-section block-banner-tourlist" style="background-image:url({% static 'imgs/page/tour/banner4.png' %})">
-        <div class="container"> 
-          <div class="text-center"> 
-            <h3>Journey with Travila - Begin Your Story!</h3>
-            <h6 class="heading-6-medium">Easily search for top tours offered by our professional network</h6>
-          </div>
-          <div class="box-search-advance box-search-advance-3 background-card wow fadeInUp"> 
-            <div class="box-bottom-search background-card"> 
-              <div class="item-search"> 
-                <label class="text-sm-bold neutral-500">Location</label>
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle btn-dropdown-search location-search" type="button" data-bs-toggle="dropdown" aria-expanded="false">New York, USA</button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Sydney, Australia</a></li>
-                    <li><a class="dropdown-item" href="#">London, England</a></li>
-                    <li><a class="dropdown-item" href="#">New York City, USA</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="item-search item-search-2"> 
-                <label class="text-sm-bold neutral-500">Check In</label>
-                <div class="box-calendar-date">
-                  <input class="search-input datepicker" type="text" placeholder="" value="02 January 2024">
-                </div>
-              </div>
-              <div class="item-search item-search-3"> 
-                <label class="text-sm-bold neutral-500">Check Out</label>
-                <div class="box-calendar-date">
-                  <input class="search-input datepicker" type="text" placeholder="" value="02 January 2024">
-                </div>
-              </div>
-              <div class="item-search bd-none"> 
-                <label class="text-sm-bold neutral-500">Guest</label>
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle btn-dropdown-search passenger-search" type="button" data-bs-toggle="dropdown" aria-expanded="false">2 adults, 2 children</button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">2 adults, 1 children</a></li>
-                    <li><a class="dropdown-item" href="#">2 adults, 2 children</a></li>
-                    <li><a class="dropdown-item" href="#">2 adults, 3 children</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="item-search bd-none d-flex justify-content-end"> 
-                <button class="btn btn-black-lg"> 
-                  <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 19L14.6569 14.6569M14.6569 14.6569C16.1046 13.2091 17 11.2091 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17C11.2091 17 13.2091 16.1046 14.6569 14.6569Z" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>Search
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+  <section class="box-section block-banner-tourlist p8" style="background-image:url({% static 'imgs/page/tour/banner4.png' %})">
+    <div class="container"> 
+      <div class="text-center"> 
+        <h3>Journey with Travila - Begin Your Story!</h3>
+        <h6 class="heading-6-medium">Easily search for top tours offered by our professional network</h6>
+      </div> 
+    </div>
+  </section>
       <section class="box-section block-content-tourlist background-body">
         <div class="container"> 
           <div class="box-content-main">
@@ -65,34 +30,24 @@
               <div class="box-filters mb-25 pb-5 border-bottom border-1">
                 <div class="row align-items-center">
                   <div class="col-xl-4 col-md-4 mb-10 text-lg-start text-center">
-                    <div class="box-view-type" id="btnContainer">  <button class="btn" onclick="gridView()">
-                      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="2" y="2" width="8" height="8" fill="#000"></rect>
-                        <rect x="12" y="2" width="8" height="8" fill="#000"></rect>
-                        <rect x="2" y="12" width="8" height="8" fill="#000"></rect>
-                        <rect x="12" y="12" width="8" height="8" fill="#000"></rect>
-                      </svg></button>
-                      <button class="btn active" onclick="listView()">
-                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <rect x="2" y="4" width="18" height="2" fill="#000"></rect>
-                          <rect x="2" y="9" width="18" height="2" fill="#000"></rect>
-                          <rect x="2" y="14" width="18" height="2" fill="#000"></rect>
-                        </svg></button>
-                        <span class="text-sm-bold neutral-500 number-found">64 tours found</span></div>
+                    <div class="box-view-type" id="btnContainer">
+                        <span class="text-sm-bold neutral-500 number-found">{{ total_events }} Event{{ total_events|pluralize }} Found</span></div>
                   </div>
+                  <!-- Tri des events-->
                   <div class="col-xl-8 col-md-8 mb-10 text-lg-end text-center">
-                    <div class="box-item-sort"><a class="btn btn-sort" href="#">
+                    <div class="box-item-sort"><a class="btn btn-sort" href="?sort={% if sort_order == '-Public_date' %}Public_date{% else %}-Public_date{% endif %}">
                         <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M8.25 6L5.25 3M5.25 3L2.25 6M5.25 3L5.25 15" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                           <path d="M9.75 12L12.75 15M12.75 15L15.75 12M12.75 15L12.75 3" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg></a>
+                        <!--filtre liste des pages-->
                       <div class="item-sort border-1"><span class="text-xs-medium neutral-500 mr-5">Show</span>
                         <div class="dropdown dropdown-sort border-1-right">
                           <button class="btn dropdown-toggle" id="dropdownSort2" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static"><span>20</span></button>
                           <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownSort2">
-                            <li><a class="dropdown-item active" href="#">20</a></li>
-                            <li><a class="dropdown-item" href="#">30</a></li>
-                            <li><a class="dropdown-item" href="#">50</a></li>
+                          <li><a class="dropdown-item active {% if paginate_by == 20 %}active{% endif %}" href="?paginate_by={{20}}">20</a></li>
+                          <li><a class="dropdown-item {% if paginate_by == 30 %}active{% endif %}" href="?paginate_by={{30}}">30</a></li>
+                          <li><a class="dropdown-item {% if paginate_by == 50 %}active{% endif %}" href="?paginate_by={{50}}">50</a></li>
                           </ul>
                         </div>
                       </div>
@@ -137,7 +92,7 @@
                           {% else %}
                           <div class="card-left"></div>
                           {% endif %}
-                          <div class="card-right"> <span class="rating">4.96 <span class="text-sm-medium neutral-500">(672 reviews)</span></span></div>
+                          <div class="card-right"> <span class="rating">4.96 <span class="text-sm-medium neutral-500">{{event.event_date}}</span></span></div>
                         </div>
                         <div class="card-title"> <a class='text-lg-bold neutral-1000' href= "{% url 'event_detail' event.slug %}">{{event}} </a></div>
                         <div class="card-program"> 
@@ -208,221 +163,29 @@
                 <div class="box-filters-sidebar"> 
                   <div class="block-filter border-1"> 
                     <h6 class="text-lg-bold item-collapse neutral-1000">Filter Price </h6>
-                    <div class="box-collapse scrollFilter"> 
-                      <div class="pt-20">
-                        <div class="box-slider-range">
-                          <div id="slider-range"></div>
-                          <div class="box-value-price"><span class="text-md-medium neutral-1000">$0</span><span class="text-md-medium neutral-1000">$500</span></div>
-                          <input class="value-money" type="hidden">
-                        </div>
+                    <form method="GET">
+                      <div class="form-group">
+                          <label for="id_titre">Titre</label>
+                          {{ myfilter.form.Titre }}
                       </div>
+                      <div class="form-group">
+                          <label for="id_pays">Pays</label>
+                          {{ myfilter.form.Pays }}
+                      </div>
+                      <div class="form-group">
+                          <label for="id_event_date">Date</label>
+                          {{ myfilter.form.event_date }}
+                      </div>
+                      <div class="form-group">
+                          <label for="id_price">Price</label>
+                          {{ myfilter.form.price }}
+                      </div>
+                      <input type="submit" value="Search" class="btn btn-gray mt-2">
+                  </form>
                     </div>
-                  </div>
-                  <div class="block-filter border-1"> 
-                    <h6 class="text-lg-bold item-collapse neutral-1000">By Activities</h6>
-                    <div class="box-collapse scrollFilter">
-                      <ul class="list-filter-checkbox"> 
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">All </span><span class="checkmark"></span>
-                          </label><span class="number-item">198</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">City Tours</span><span class="checkmark"></span>
-                          </label><span class="number-item">32</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Explore Ruins </span><span class="checkmark"></span>
-                          </label><span class="number-item">13</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Beach Snorkel </span><span class="checkmark"></span>
-                          </label><span class="number-item">23</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Mountain Trek</span><span class="checkmark"></span>
-                          </label><span class="number-item">35</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Food Tour</span><span class="checkmark"></span>
-                          </label><span class="number-item">56</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">River Cruise</span><span class="checkmark"></span>
-                          </label><span class="number-item">76</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="block-filter border-1"> 
-                    <h6 class="text-lg-bold item-collapse neutral-1000">By Attractions</h6>
-                    <div class="box-collapse scrollFilter">
-                      <ul class="list-filter-checkbox"> 
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Machu Picchu </span><span class="checkmark"></span>
-                          </label><span class="number-item">32</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Great Wall</span><span class="checkmark"></span>
-                          </label><span class="number-item">13</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Eiffel Tower</span><span class="checkmark"></span>
-                          </label><span class="number-item">23</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Statue of Liberty</span><span class="checkmark"></span>
-                          </label><span class="number-item">23</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Taj Mahal</span><span class="checkmark"></span>
-                          </label><span class="number-item">35</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Taj Mahal</span><span class="checkmark"></span>
-                          </label><span class="number-item">56</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Taj Mahal</span><span class="checkmark"></span>
-                          </label><span class="number-item">76</span>
-                        </li>
-                      </ul>
-                      <div class="box-see-more"> <a class="link-see-more" href="#">See more 
-                          <svg width="8" height="6" viewbox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.89553 1.02367C7.75114 0.870518 7.50961 0.864815 7.35723 1.00881L3.9998 4.18946L0.642774 1.00883C0.490387 0.86444 0.249236 0.870534 0.104474 1.02369C-0.0402885 1.17645 -0.0338199 1.4176 0.118958 1.56236L3.73809 4.99102C3.81123 5.06036 3.90571 5.0954 3.9998 5.0954C4.0939 5.0954 4.18875 5.06036 4.26191 4.99102L7.88104 1.56236C8.03382 1.41758 8.04029 1.17645 7.89553 1.02367Z" fill=""></path>
-                          </svg></a></div>
-                    </div>
-                  </div>
-                  <div class="block-filter border-1"> 
-                    <h6 class="text-lg-bold item-collapse neutral-1000">By Durations</h6>
-                    <div class="box-collapse scrollFilter">
-                      <ul class="list-filter-checkbox"> 
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">0 - 3 hours </span><span class="checkmark"></span>
-                          </label><span class="number-item">98</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">5-7 hours</span><span class="checkmark"></span>
-                          </label><span class="number-item">23</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Full day</span><span class="checkmark"></span>
-                          </label><span class="number-item">16</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Multi days</span><span class="checkmark"></span>
-                          </label><span class="number-item">87</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="block-filter border-1">
-                    <h6 class="text-lg-bold item-collapse neutral-1000">Review Score</h6>
-                    <div class="box-collapse scrollFilter">
-                      <ul class="list-filter-checkbox">
-                        <li>
-                          <label class="cb-container">
-                            <input type="checkbox">
-                            <span class="text-sm-media">
-                              <img src="{% static 'imgs/template/icons/star-yellow.svg' %}" alt="1 star">
-                            </span>
-                            <span class="checkmark"></span>
-                          </label>
-                        </li>
-                        <li>
-                          <label class="cb-container">
-                            <input type="checkbox">
-                            <span class="text-sm-media">
-                              <img src="{% static 'imgs/template/icons/star-yellow.svg' %}" alt="2 stars">
-                              <img src="{% static 'imgs/template/icons/star-grey.svg' %}" alt="2 stars">
-                            </span>
-                            <span class="checkmark"></span>
-                          </label>
-                        </li>
-                        <li>
-                          <label class="cb-container">
-                            <input type="checkbox">
-                            <span class="text-sm-media">
-                              <img src="{% static 'imgs/template/icons/star-yellow.svg' %}" alt="3 stars">
-                              <img src="{% static 'imgs/template/icons/star-grey.svg' %}" alt="3 stars">
-                            </span>
-                            <span class="checkmark"></span>
-                          </label>
-                        </li>
-                        <li>
-                          <label class="cb-container">
-                            <input type="checkbox">
-                            <span class="text-sm-media">
-                              <img src="{% static 'imgs/template/icons/star-yellow.svg' %}" alt="4 stars">
-                              <img src="{% static 'imgs/template/icons/star-grey.svg' %}" alt="4 stars">
-                            </span>
-                            <span class="checkmark"></span>
-                          </label>
-                        </li>
-                        <li>
-                          <label class="cb-container">
-                            <input type="checkbox">
-                            <span class="text-sm-media">
-                              <img src="{% static 'imgs/template/icons/star-yellow.svg' %}" alt="5 stars">
-                              <img src="{% static 'imgs/template/icons/star-grey.svg' %}" alt="5 stars">
-                            </span>
-                            <span class="checkmark"></span>
-                          </label>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  
-                  <div class="block-filter border-1"> 
-                    <h6 class="text-lg-bold item-collapse neutral-1000">By Language </h6>
-                    <div class="box-collapse scrollFilter">
-                      <ul class="list-filter-checkbox"> 
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">0 - 3 hours </span><span class="checkmark"></span>
-                          </label><span class="number-item">98</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">5-7 hours</span><span class="checkmark"></span>
-                          </label><span class="number-item">23</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Full day</span><span class="checkmark"></span>
-                          </label><span class="number-item">16</span>
-                        </li>
-                        <li> 
-                          <label class="cb-container">
-                            <input type="checkbox"><span class="text-sm-medium">Multi days</span><span class="checkmark"></span>
-                          </label><span class="number-item">87</span>
-                        </li>
-                      </ul>
-                      <div class="box-see-more"> <a class="link-see-more" href="#">See more 
-                          <svg width="8" height="6" viewbox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.89553 1.02367C7.75114 0.870518 7.50961 0.864815 7.35723 1.00881L3.9998 4.18946L0.642774 1.00883C0.490387 0.86444 0.249236 0.870534 0.104474 1.02369C-0.0402885 1.17645 -0.0338199 1.4176 0.118958 1.56236L3.73809 4.99102C3.81123 5.06036 3.90571 5.0954 3.9998 5.0954C4.0939 5.0954 4.18875 5.06036 4.26191 4.99102L7.88104 1.56236C8.03382 1.41758 8.04029 1.17645 7.89553 1.02367Z" fill=""></path>
-                          </svg></a></div>
-                    </div>
-                  </div>
                 </div>
               </div>
+              <!--populaire Tours-->
               <div class="sidebar-left border-1 background-body"> 
                 <h6 class="text-lg-bold neutral-1000">Popular Tours</h6>
                 <div class="box-popular-posts"> 
@@ -481,24 +244,38 @@
             </section>
 </main>
 
-<script>
-  function listView() {
-    document.getElementById('items-container').classList.remove('grid-view');
-    document.getElementById('items-container').classList.add('list-view');
-    document.querySelector('.btn.active').classList.remove('active');
-    document.querySelector('button[onclick="listView()"]').classList.add('active');
-  }
-  
-  function gridView() {
-    document.getElementById('items-container').classList.remove('list-view');
-    document.getElementById('items-container').classList.add('grid-view');
-    document.querySelector('.btn.active').classList.remove('active');
-    document.querySelector('button[onclick="gridView()"]').classList.add('active');
-  }
-  
-  // Initialiser le mode d'affichage par défaut (grille)
-  window.onload = function() {
-    listView();
-  };
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        flatpickr('.datepicker', {
+            dateFormat: "Y-m-d",
+            onOpen: function(selectedDates, dateStr, instance) {
+                // Ajouter un bouton dans le calendrier lorsque celui-ci est ouvert
+                if (!document.getElementById('clear-date-btn')) {
+                    const clearButton = document.createElement('button');
+                    clearButton.id = 'clear-date-btn';
+                    clearButton.classList.add('btn', 'btn-secondary', 'mt-2');
+                    clearButton.textContent = 'Cancel';
+                    clearButton.classList.add('btn', 'btn-gray', 'mt-2');
+                    
+                    // Ajouter une action au clic du bouton
+                    clearButton.addEventListener('click', function() {
+                        instance.clear(); // Réinitialiser la date dans le calendrier
+                        instance.close(); // Fermer le calendrier
+                    });
+
+                    // Insérer le bouton dans le conteneur de flatpickr
+                    instance.calendarContainer.appendChild(clearButton);
+                }
+            },
+        });
+
+        // Ajouter des classes supplémentaires via JavaScript
+        document.querySelectorAll('input[type="date"]').forEach(function(input) {
+            input.classList.add('form-control');
+        });
+    });
   </script>
+
+
+    
 {% endblock body %}

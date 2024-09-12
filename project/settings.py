@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #My application
     'event',
     'bootstrap5',
+    'django_filters',
     
     
 ]
