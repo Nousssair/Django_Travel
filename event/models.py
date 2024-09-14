@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 
@@ -27,7 +28,7 @@ class Event(models.Model): # Nom de la table
     Groupe_size = models.IntegerField (default=0, null=True, blank=True)
     Type = models.CharField(max_length=100 , choices=Type_event)
     Localisation = models.CharField(max_length=100)
-    Description = models.TextField(max_length=2000, default="")
+    Description = RichTextUploadingField()  # Utilisation de CKEditor 5
     Programme = models.TextField(max_length=2000)
     Include  = models.TextField(max_length=1000, default="", null=True, blank=True)
     Public_date =  models.DateTimeField(auto_now=True, null=True, blank=True)
