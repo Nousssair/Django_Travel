@@ -58,24 +58,40 @@ def event_detail(request , slug):
 
 def booking(request, slug):
     event = Event.objects.get(slug=slug)  # Récupère l'événement par slug
+    
     if request.method == 'POST':
+        print('post data : ', request.POST)
+        
         form = ApplyForm(request.POST, event=event)  # Passe l'événement au formulaire
+        
+        print('Testing')
+        
         if form.is_valid():
+            print('Form is valid')
             apply_instance = form.save(commit=False)
-            apply_instance.event = event  # Associe l'événement à l'instance Apply
+            apply_instance.event = event
             number_of_people = form.cleaned_data['number_of_people']
-            if number_of_people >= 0:
-                apply_instance.price = event.price * number_of_people  # Calcule le prix total
+            print(f"Number of people: {number_of_people}")
+            
+            if number_of_people >= 1:
+                apply_instance.price = event.price * number_of_people
                 apply_instance.save()
+                print(f"Apply instance saved for {apply_instance.first_name} {apply_instance.last_name}")
                 return redirect('booking_success')
             else:
                 form.add_error('number_of_people', 'Le nombre de personnes ne peut pas être négatif.')
-
+                print('form error: negative number of people')
+        else:
+            print("Form is not valid")
+            print(form.errors)  # Affiche les erreurs de validation
     else:
-        form = ApplyForm(event=event)  # Initialise le formulaire avec l'événement
+        form = ApplyForm(event=event)  # Cela initialise le formulaire avec les champs nécessaires
+        print('form not valid')
 
-    context = {'form': form, 'event': event}  # Passe l'événement au contexte
+
+    context = {'form': form, 'event': event}
     return render(request, 'event/booking.html', context)
+
 
     
     
