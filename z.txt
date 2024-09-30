@@ -733,3 +733,170 @@ principal Headers and nav-bar:
       </section>
 
 {%endblock body%}
+
+
+parti formulaire :
+
+
+
+
+<br>
+        <h5 class="mb-3">Detail Event</h5>
+
+        <div class="form-group">
+            <label>Event Title:</label>
+            <input type="text" value="{{ form.title.value }}" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label>Country:</label>
+            <input type="text"  value="{{ form.country.value}}" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label>City: </label>
+            <input type="text" value="{{ form.location.value }}" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label>Date of Event:</label>
+            <input type="text" value="{{ form.event_date.value }}" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label>Price of one person:</label>
+            <div class="input-group">
+                <input type="text" id="totalPrice" value="{{ form.price.value }}" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Currency:</label>
+            <div class="input-group">
+                <input type="text" id="totalPrice" value="{{ form.currency.value }}" class="form-control" readonly>
+            </div>
+        </div>
+        <br>
+        <h5 class="mb-3">Information</h5>
+        <div class="form-group">
+            {{ form.first_name.label }}
+            {{ form.first_name }}
+        </div>
+        <div class="form-group">
+            {{ form.last_name.label }}
+            {{ form.last_name }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email}}
+        </div>
+        <div class="form-group">
+            {{ form.phone_number.label }}
+            {{ form.phone_number}}
+        </div>
+        <div class="form-group">
+            {{ form.nationality.label }}
+            {{ form.nationality}}
+        </div>
+        <div class="form-group">
+            {{ form.id_passport.label }}
+            {{ form.id_passport}}
+        </div>
+        <div class="form-group">
+            {{ form.number_of_people.label }}
+            {{ form.number_of_people }}
+        </div>
+        
+    <div class="form-group">
+        <label>Total Price:</label>
+        <input type="text" id="totalPrice" value="{{ form.price.value }}" class="form-control" readonly>
+    </div>
+
+
+views.py :
+
+ if form.is_valid():
+            print('Form is valid')
+            apply_instance = form.save(commit=False)
+            apply_instance.event = event
+            number_of_people = form.cleaned_data['number_of_people']
+            print(f"Number of people: {number_of_people}")
+            
+            if number_of_people >= 1:
+                apply_instance.price = event.price * number_of_people
+                apply_instance.save()
+                print(f"Apply instance saved for {apply_instance.first_name} {apply_instance.last_name}")
+                return redirect('booking_success')
+            else:
+                form.add_error('number_of_people', 'Le nombre de personnes ne peut pas être négatif.')
+                print('form error: negative number of people')
+        else:
+            print("Form is not valid")
+            print(form.errors)  # Affiche les erreurs de validation
+
+
+
+
+forms.py :
+
+ widgets = {
+            'event': forms.HiddenInput(),
+        }
+
+    def __init__(self, *args, **kwargs):
+        event = kwargs.pop('event', None)
+        super().__init__(*args, **kwargs)
+        
+        if event:
+            self.fields['event'] = forms.ModelChoiceField(queryset=Event.objects.filter(pk=event.pk), widget=forms.HiddenInput())
+            # Remplacer les champs par des lectures des attributs de l'événement
+            self.fields['title'] = forms.CharField(initial=event.Titre, widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+            self.fields['country'] = forms.CharField(initial=event.Pays, widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+            self.fields['location'] = forms.CharField(initial=event.Localisation, widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+            self.fields['price'] = forms.DecimalField(initial=event.price, widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+            self.fields['currency'] = forms.ChoiceField(choices=[('USD', 'USD'), ('EUR', 'EUR')], initial=event.currency, widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+            self.fields['event_date'] = forms.DateField(initial=event.event_date, widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+            
+    def clean(self):
+        cleaned_data = super().clean()
+        
+        # Exemple de validation conditionnelle
+        if not cleaned_data.get('event'):
+            self.add_error('event', 'Cet événement est requis.')
+        
+        return cleaned_data        
+
+
+
+
+
+
+
+
+<br>
+        <h5 class="mb-3">Detail Event</h5>
+
+        <div class="form-group">
+            <label>Event Title:</label>
+            <input type="text" value="{{ form.title.value }}" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label>Country:</label>
+            <input type="text"  value="{{ form.country.value}}" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label>City: </label>
+            <input type="text" value="{{ form.location.value }}" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label>Date of Event:</label>
+            <input type="text" value="{{ form.event_date.value }}" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label>Price of one person:</label>
+            <div class="input-group">
+                <input type="text" id="totalPrice" value="{{ form.price.value }}" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Currency:</label>
+            <div class="input-group">
+                <input type="text" id="totalPrice" value="{{ form.currency.value }}" class="form-control" readonly>
+            </div>
+        </div>
+        <br>

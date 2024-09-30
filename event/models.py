@@ -61,6 +61,8 @@ class Category(models.Model):
     
     
 
+# This class defines a model for applying to an event with fields for personal information and
+# application details.
 class Apply(models.Model):
     
     event = models.ForeignKey(Event, related_name='apply_event' ,on_delete=models.CASCADE)

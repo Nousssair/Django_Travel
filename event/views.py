@@ -60,36 +60,26 @@ def booking(request, slug):
     event = Event.objects.get(slug=slug)  # Récupère l'événement par slug
     
     if request.method == 'POST':
-        print('post data : ', request.POST)
         
-        form = ApplyForm(request.POST, event=event)  # Passe l'événement au formulaire
-        
-        print('Testing')
-        
-        if form.is_valid():
-            print('Form is valid')
-            apply_instance = form.save(commit=False)
-            apply_instance.event = event
-            number_of_people = form.cleaned_data['number_of_people']
-            print(f"Number of people: {number_of_people}")
+        form = ApplyForm(request.POST)
+        print('test')
+        if form.is_valid:
             
-            if number_of_people >= 1:
-                apply_instance.price = event.price * number_of_people
-                apply_instance.save()
-                print(f"Apply instance saved for {apply_instance.first_name} {apply_instance.last_name}")
-                return redirect('booking_success')
-            else:
-                form.add_error('number_of_people', 'Le nombre de personnes ne peut pas être négatif.')
-                print('form error: negative number of people')
-        else:
-            print("Form is not valid")
-            print(form.errors)  # Affiche les erreurs de validation
+            myform = form.save(commit=False)
+            myform.event = event
+            myform.save()
+        #print('post data : ', request.POST)
+        
+        #form = ApplyForm(request.POST, event=event)  # Passe l'événement au formulaire 
+        #print('Testing')
+        
     else:
-        form = ApplyForm(event=event)  # Cela initialise le formulaire avec les champs nécessaires
-        print('form not valid')
+        form = ApplyForm()
+        #form = ApplyForm(event=event)  # Cela initialise le formulaire avec les champs nécessaires
+       # print('form not valid')
 
 
-    context = {'form': form, 'event': event}
+    context = {'form': form , 'event': event}
     return render(request, 'event/booking.html', context)
 
 
